@@ -5,11 +5,11 @@ function App() {
   return (
     <>
       <Router>
-        <div className="">
+        {/* <div className="">
           <h1>
             This is the Nav Bar
           </h1>
-        </div>
+        </div> */}
         <main>
           <Routes>
             <Route path="/" element={<Homepage/>}/>
