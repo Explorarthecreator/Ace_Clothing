@@ -1,9 +1,8 @@
-
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className=" text-2xl">
       <h1>
         App Cleanup
       </h1>
