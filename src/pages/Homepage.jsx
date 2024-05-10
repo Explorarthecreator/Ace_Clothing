@@ -6,7 +6,7 @@ function Homepage() {
   <div className="hero-content text-center text-neutral-content">
     <div className="max-w-md">
       <h1 className="mb-5 text-5xl font-bold text-white">
-        Coming Soon
+        Launching Soon
       </h1>
       <p className="mb-5 text-gray-100">
         Ace clothing is an online store for all your wears that are of quality materials. We even offer customization on any item you would like from shirts to shoes and they are very affordable.
