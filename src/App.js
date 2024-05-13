@@ -1,18 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
+import NavBar from "./components/NavBar";
+import ProductDescription from "./pages/ProductDescription";
 
 function App() {
   return (
     <>
       <Router>
-        {/* <div className="">
-          <h1>
-            This is the Nav Bar
-          </h1>
-        </div> */}
-        <main>
+        <NavBar/>
+        <main className=" font-encode mt-20 bg-[#F2F2F2] h-screen overflow-y-scroll pt-5">
           <Routes>
             <Route path="/" element={<Homepage/>}/>
+            <Route path="/description" element={<ProductDescription/>}/>
           </Routes>
         </main>
       </Router>
