@@ -1,22 +1,33 @@
-import model from '../model.jpg'
+import { useState } from "react";
+import MiniNav from "../components/MiniNav"
+import ProductItem from "../components/ProductItem";
+
 function Homepage() {
+  const [value,setValue] = useState('all')
+  const display =(string)=>{
+    console.log(string);
+    setValue(string)
+    console.log(value);
+  }
+  
   return (
-    <div className="hero min-h-screen" style={{backgroundImage: `url(${model})`}}>
-  <div className="hero-overlay bg-opacity-60"></div>
-  <div className="hero-content text-center text-neutral-content">
-    <div className="max-w-md">
-      <h1 className="mb-5 text-5xl font-bold text-white">
-        Launching Soon
-      </h1>
-      <p className="mb-5 text-gray-100">
-        Ace clothing is an online store for all your wears that are of quality materials. We even offer customization on any item you would like from shirts to shoes and they are very affordable.
-      </p>
-      <button className="btn cursor-not-allowed text-white">
-        ANTICIPATE
-      </button>
+    <div className=" w-11/12 md:w-4/5 m-auto">
+        <h1 className=' text-black'>
+            Let's work
+        </h1>
+
+        <div className=" md:w-4/5 md:m-auto">
+          <MiniNav filterInput={display} value={value}/>
+        </div>
+
+        <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-2 md:gap-1 justify-center">
+          <ProductItem/>
+          <ProductItem/>
+          <ProductItem/>
+          <ProductItem/>
+        </div>
     </div>
-  </div>
-</div>
+    
   )
 }
 
