@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import test from '../test.jpg'
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { reduce, add } from "../features/product/productSlice"
+import { reduce, add, setSize } from "../features/product/productSlice"
 
 
 function ProductDescription() {
@@ -23,14 +23,14 @@ function ProductDescription() {
 
         <div className=" md:flex">
             <div className=" md:w-1/2">
-                <img src={test} alt="" className=" w-full rounded-md" />
+                <img src={product.image} alt="" className=" w-full rounded-md" />
             </div>
 
 
             {/* Product Details */}
             <div className="mt-2 flex flex-col gap-2 md:w-1/2 md:py-4 md:px-7">
                 <h1 className=" text-3xl font-semibold">
-                    Nike {product.name}
+                    {product.name}
                 </h1>
 
                 <div>
@@ -52,11 +52,13 @@ function ProductDescription() {
                     </div>
                 </div>
                 <p>
-                    Its simple and elegant shape makes it perfect for those of you who like you who want minimalist clothes Read More. . .
+                    {
+                        product.description
+                    }
                 </p>
 
                 <p>
-                    Tag: Shoes
+                    Tag: {product.tag}
                 </p>
                 <div>
                     <h3 className=" text-xl font-medium">
@@ -65,7 +67,7 @@ function ProductDescription() {
                     <div className="flex gap-1 p-3">
                         <div>
                             <input type="radio" id="S" name="size" value="S" className="hidden peer" required/>
-                            <label htmlFor="S" className="inline-flex items-center w-8 h-8 justify-center text-black bg-white border border-gray-400 rounded-full cursor-pointer  peer-checked:bg-black peer-checked:text-white hover:text-gray-600 hover:bg-gray-100"  onClick={()=>console.log("S")}>                           
+                            <label htmlFor="S" className="inline-flex items-center w-8 h-8 justify-center text-black bg-white border border-gray-400 rounded-full cursor-pointer  peer-checked:bg-black peer-checked:text-white hover:text-gray-600 hover:bg-gray-100"  onClick={()=>dispatch(setSize('S'))}>                           
                                 <div className="block">
                                     <div className="w-full text-md font-semibold">S</div>
                                 </div>    
@@ -73,7 +75,7 @@ function ProductDescription() {
                         </div>
                         <div>
                             <input type="radio" id="M" name="size" value="M" className="hidden peer" required />
-                            <label htmlFor="M" className="inline-flex items-center w-8 h-8 justify-center text-black bg-white border border-gray-400 rounded-full cursor-pointer  peer-checked:bg-black peer-checked:text-white hover:text-gray-600 hover:bg-gray-100" onClick={()=>console.log("M")}>                           
+                            <label htmlFor="M" className="inline-flex items-center w-8 h-8 justify-center text-black bg-white border border-gray-400 rounded-full cursor-pointer  peer-checked:bg-black peer-checked:text-white hover:text-gray-600 hover:bg-gray-100" onClick={()=>dispatch(setSize('M'))}>                           
                                 <div className="block">
                                     <div className="w-full text-md font-semibold">M</div>
                                 </div>    

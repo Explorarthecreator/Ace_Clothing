@@ -9,7 +9,8 @@ const initialState = {
     isSuccess: false,
     isError: false,
     message:'',
-    quantity:1
+    quantity:1,
+    size:''
 }
 
 export const fetchProducts = createAsyncThunk('product/getAll',async(thunkAPI)=>{
@@ -39,6 +40,9 @@ export const ProductSlice = createSlice({
         reset:(state)=>initialState,
         setProduct: (state,getr)=>{
             state.product = getr.payload
+        },
+        setSize:(state,data)=>{
+            state.size = data.payload
         },
         resetProduct:(state)=>{
             state.product = {}
@@ -79,6 +83,6 @@ export const ProductSlice = createSlice({
     }
 })
 
-export const {reset, setProduct,reduce,add,resetProduct} = ProductSlice.actions
+export const {reset, setProduct,reduce,add,resetProduct, setSize} = ProductSlice.actions
 
 export default ProductSlice.reducer
