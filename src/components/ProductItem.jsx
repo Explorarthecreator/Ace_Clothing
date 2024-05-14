@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import test from '../test.jpg'
 import { setProduct } from '../features/product/productSlice'
 import { useDispatch } from 'react-redux'
 
@@ -25,11 +24,7 @@ function ProductItem({data}) {
                     data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')
                 }
             </p>
-            {/* <div className="">
-                <button className="btn bg-transparent border border-black text-black btn-sm w-full mt-2">
-                    Add to Cart
-                </button>
-            </div> */}
+            
         </div>
         </Link>
     </div>
