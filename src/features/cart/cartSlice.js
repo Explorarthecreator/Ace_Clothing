@@ -5,6 +5,7 @@ const cart = JSON.parse(localStorage.getItem('cart'))
 // localStorage.removeItem('cart')
 const initialState = {
     cart:cart? cart :[],
+    cartView: false
     // message:null
 }
 // const dispatch = useDispatch()
@@ -48,10 +49,55 @@ export const CartSlice = createSlice({
                 // localStorage.setItem('cart', JSON.stringify(action.payload))
                 // return true
             }
+        },
+        deleteItem:(state,action)=>{
+            const localCart = JSON.parse(localStorage.getItem('cart'))
+            console.log(action.payload);
+            if(action.payload > -1){
+                localCart.splice(action.payload,1)
+                // console.log(action.payload.index);
+            }
+            // localCart[action.payload.index].quantity = action.payload.quantity -1
+            // console.log(localCart[action.payload.index].quantity);
+
+            // console.log(localCart);
+            state.cart = localCart
+            localStorage.setItem('cart',JSON.stringify(localCart))
+        },
+        show:(state)=>{
+            state.cartView = true
+        },
+        hide:(state)=>{
+            state.cartView = false
+        },
+        reduce:(state,action)=>{
+            // console.log(state.cart[action.payload.index].quantity)
+            // console.log(action.payload.quantity)
+            state.cart[action.payload.index].quantity = action.payload.quantity-1
+            
+            const localCart = JSON.parse(localStorage.getItem('cart'))
+            // console.log(localCart);
+            // console.log(localCart[action.payload.index].quantity);
+            localCart[action.payload.index].quantity = action.payload.quantity -1
+            // console.log(localCart[action.payload.index].quantity);
+
+            localStorage.setItem('cart',JSON.stringify(localCart))
+
+            // console.log(localCart);
+        },
+        increase:(state,action)=>{
+            state.cart[action.payload.index].quantity = action.payload.quantity +1
+            const localCart = JSON.parse(localStorage.getItem('cart'))
+            // console.log(localCart);
+            // console.log(localCart[action.payload.index].quantity);
+            localCart[action.payload.index].quantity = action.payload.quantity +1
+            // console.log(localCart[action.payload.index].quantity);
+
+            localStorage.setItem('cart',JSON.stringify(localCart))
         }
     },
 })
 
-export const {reset, addItem} = CartSlice.actions
+export const {reset, addItem,show,hide,reduce,increase, deleteItem} = CartSlice.actions
 
 export default CartSlice.reducer
