@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import ProductDescription from "./pages/ProductDescription";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import FinishOrder from "./components/FinishOrder";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           </Routes>
         </main>
       </Router>
+      <FinishOrder/>
       <ToastContainer position="top-right"
         autoClose={5000}
         hideProgressBar={false}
