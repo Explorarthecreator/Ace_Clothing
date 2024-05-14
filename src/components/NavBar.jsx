@@ -1,9 +1,11 @@
 import { FaCartShopping } from "react-icons/fa6"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
 
 function NavBar() {
     const loggedIn = true
+    const {cart} = useSelector((state)=>state.cart)
   return (
     <nav className='w-full overflow-hidden bg-white shadow-xl text-black p-2 fixed top-0 left-0'>
         <div className="navbar md:w-11/12 md:m-auto p-1">
@@ -43,7 +45,11 @@ function NavBar() {
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                         <div className="indicator">
                             <FaCartShopping size={30}/>
-                            <span className="badge badge-sm text-white indicator-item">8</span>
+                            <span className="badge badge-sm text-white indicator-item">
+                                {
+                                    cart.length
+                                }
+                            </span>
                         </div>
                     </div>
                 </div>
