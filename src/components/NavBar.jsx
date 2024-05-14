@@ -1,13 +1,17 @@
 import { FaCartShopping } from "react-icons/fa6"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+// import FinishOrder from "./FinishOrder"
+import { show } from "../features/cart/cartSlice"
 
 
 function NavBar() {
+    const dispatch = useDispatch()
     const loggedIn = true
     const {cart} = useSelector((state)=>state.cart)
   return (
     <nav className='w-full overflow-hidden bg-white shadow-xl text-black p-2 fixed top-0 left-0'>
+        {/* <FinishOrder/> */}
         <div className="navbar md:w-11/12 md:m-auto p-1">
             <div className="flex-1">
                 <Link className="text-xl font-encode font-semibold">
@@ -42,10 +46,10 @@ function NavBar() {
                     </button>
                 }
                 <div className="">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle" onClick={()=>dispatch(show())}>
                         <div className="indicator">
                             <FaCartShopping size={30}/>
-                            <span className="badge badge-sm text-white indicator-item">
+                            <span className="badge badge-sm text-white bg-black indicator-item">
                                 {
                                     cart.length
                                 }
