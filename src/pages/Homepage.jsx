@@ -4,6 +4,7 @@ import ProductItem from "../components/ProductItem";
 import ProductItemLoader from "../components/ProductItemLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProducts, resetProduct } from "../features/product/productSlice";
+import { toast } from "react-toastify";
 
 
 function Homepage() {
@@ -11,7 +12,7 @@ function Homepage() {
   const {isLoading, isError, isSuccess, message, products} = useSelector((state)=>state.product)
   const dispatch = useDispatch()
   const display =(string)=>{
-    console.log(string);
+    // console.log(string);
     setValue(string)
     // console.log(value);
   }
@@ -21,10 +22,11 @@ function Homepage() {
     }
     dispatch(resetProduct())
     if(isSuccess){
-      console.log(products);
+      // console.log(products);
     }
     if(isError){
-      console.log(message);
+      // console.log(message);
+      toast.error(message)
     }
   },[products, isError, message,isSuccess, dispatch])
   return (
