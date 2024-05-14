@@ -1,20 +1,31 @@
 import { FaArrowLeft } from "react-icons/fa6"
 import { Link, useNavigate } from "react-router-dom"
-import test from '../test.jpg'
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { reduce, add, setSize } from "../features/product/productSlice"
+import { addItem } from "../features/cart/cartSlice"
 
 
 function ProductDescription() {
-    const {product,quantity} = useSelector((state)=>state.product)
+    const {product,quantity,size} = useSelector((state)=>state.product)
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
     useEffect(()=>{
         if(Object.keys(product).length <=0){
             navigate('/')
         }
-    })
+    },[navigate,product])
+    const cartData = {
+        name:product.name,
+        size,
+        quantity,
+        price: product.price
+    }
+
+    const addToCart =(cart)=>{
+        dispatch(addItem(cart))
+    }
   return (
     <div className=" w-11/12 m-auto text-black pb-10 ">
         <Link to={`/`} className="flex items-center gap-1 mb-5">
@@ -87,9 +98,15 @@ function ProductDescription() {
                 
                 
 
-                <button className="btn btn-md rounded-2xl bg-black text-white  w-full">
+                <button className="btn btn-md rounded-2xl bg-black text-white  w-full" onClick={()=>addToCart(cartData)}>
                     Add to cart {(product.price * quantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')}
                 </button>
+
+                {/* {
+                    message && <p className=" text-error">
+                        {message}
+                    </p>
+                } */}
             </div>
             
         </div>
