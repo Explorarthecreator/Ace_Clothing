@@ -1,12 +1,17 @@
 import { useDispatch, useSelector } from "react-redux"
 import CartItem from "./CartItem"
 import { useEffect, useState } from "react"
-import { increase, reduce } from "../features/cart/cartSlice"
+import { hide, increase, reduce } from "../features/cart/cartSlice"
 import { toast } from "react-toastify"
+import { increaseStep, setOrder } from "../features/order/orderSlice"
+import { FaArrowRight } from "react-icons/fa"
+import { useNavigate } from "react-router-dom"
 
 
 function Cart() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const loggedIn = true
     const {cart} = useSelector((state)=>state.cart)
     const [total,setTotalPrice] = useState(()=>{
         let total = 0
@@ -50,10 +55,26 @@ function Cart() {
             // setTotalPrice(total+Number(price))
         }
     }
+    
+
+    const proceedToCheckout = ()=>{
+        if(loggedIn){
+            const order ={
+                cart,
+                total
+            }
+            dispatch(setOrder(order))
+            dispatch(increaseStep())
+        }else{
+            navigate('/login')
+            dispatch(hide())
+
+        }
+    }
 
   return (
     <div className="w-11/12 m-auto mt-3">
-        <h1 className=" text-black text-xl font-medium my-4">
+        <h1 className=" text-black text-2xl font-medium my-4">
             Cart
         </h1>
 
@@ -68,14 +89,23 @@ function Cart() {
         }
 
         <div className=" flex justify-between my-5">
-            <h1 className=" text-black text-xl font-medium">
-                Cart Total
-            </h1>
+            <div>
+                <h1 className=" text-black text-xl font-medium">
+                    Cart Total
+                </h1>
+                {/* <p>
+                    Shipping fee will be added when checking out
+                </p> */}
+            </div>
 
             <p className="text-3xl font-bold text-black">
                 #{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')}
             </p>
         </div>
+
+        <button className="btn bg-black text-white w-full" onClick={proceedToCheckout}>
+            Proceed to checkout <FaArrowRight/>
+        </button>
 
     </div>
   )
