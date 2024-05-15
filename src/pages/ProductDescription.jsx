@@ -20,7 +20,8 @@ function ProductDescription() {
         name:product.name,
         size,
         quantity,
-        price: product.price
+        price: product.price,
+        image:product.image
     }
 
     const addToCart =(cart)=>{
