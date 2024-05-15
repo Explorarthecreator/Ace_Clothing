@@ -5,6 +5,8 @@ import ProductDescription from "./pages/ProductDescription";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import FinishOrder from "./components/FinishOrder";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   return (
@@ -15,10 +17,12 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage/>}/>
             <Route path="/description" element={<ProductDescription/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/signup" element={<Signup/>}/>
           </Routes>
         </main>
+        <FinishOrder/>
       </Router>
-      <FinishOrder/>
       <ToastContainer position="top-right"
         autoClose={5000}
         hideProgressBar={false}
