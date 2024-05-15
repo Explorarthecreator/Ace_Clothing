@@ -12,23 +12,23 @@ function Homepage() {
   const {isLoading, isError, isSuccess, message, products} = useSelector((state)=>state.product)
   const dispatch = useDispatch()
   const display =(string)=>{
-    // console.log(string);
     setValue(string)
-    // console.log(value);
   }
+
+  
   useEffect(()=>{
     if(products.length < 1){
       dispatch(fetchProducts())
     }
     dispatch(resetProduct())
-    if(isSuccess){
-      // console.log(products);
-    }
+    // if(isSuccess){
+    // }
     if(isError){
-      // console.log(message);
       toast.error(message)
     }
-  },[products, isError, message,isSuccess, dispatch])
+  },[products, isError, message, dispatch])
+
+
   return (
     <div className=" w-11/12 md:w-4/5 m-auto">
         <h1 className=' text-black'>
@@ -55,31 +55,15 @@ function Homepage() {
               <ProductItemLoader/>
             </div>
           </div>:
-
           <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-2 md:gap-1 justify-center">
-
             {
               products.map((product)=>(
                 <ProductItem key={product.id} data={product.data}/>
               ))
             }
-          {/* <ProductItem/> */}
-          {/* <ProductItem/> */}
-          {/* <ProductItem/> */}
           </div>
         }
-{/* 
-        <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-2 md:gap-1 justify-center">
-          <ProductItem/>
-          <ProductItem/>
-          <ProductItem/>
-          <ProductItem/>
-        </div> */}
-
-        {/* <ProductItemLoader/> */}
-
-    </div>
-    
+    </div> 
   )
 }
 
