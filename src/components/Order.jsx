@@ -1,4 +1,3 @@
-import React from 'react'
 import OrderDetail from './OrderDetail'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 import { increaseStep, resetStep } from '../features/order/orderSlice'
@@ -6,9 +5,18 @@ import { useDispatch, useSelector } from 'react-redux'
 
 function Order() {
   const {order} = useSelector((state)=>state.order)
+  // const [formData, setFormData] = useState({
+  //   address:''
+  // })
   const dispatch = useDispatch()
   return (
     <div className='w-11/12 m-auto mt-3 text-black'>
+
+        {/* <h1 className='text-black text-2xl font-medium my-4'>
+          Shipping Method
+        </h1> */}
+
+
         <h1 className='text-black text-2xl font-medium my-4'>
             Order Summary
         </h1>
@@ -22,25 +30,37 @@ function Order() {
           }
         </div>
 
-        <div className='flex justify-between my-6 text-lg font-medium'>
-          <p className='text-lg font-medium'>
-            Shipping Fee
-          </p>
-          <p>
-            0
-          </p>
-        </div>
+       
 
-        <div className='flex justify-between text-xl font-semibold'>
-          <h3 className=''>
-            Total Price
-          </h3>
+
+        <h3 className='mt-6 mb-3 text-lg font-semibold'>
+          Total Price
+        </h3>
+        <div className='flex justify-between'>
+          <p>
+            Order Total
+          </p>
           <p className=''>
             {
               order.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')
             }
           </p>
         </div>
+
+        <div className='flex justify-between '>
+          <p>
+            Shipping Fee
+          </p>
+          <p className=''>
+            5,000
+          </p>
+        </div>
+
+        <p className=' text-right text-xl font-semibold'>
+          {
+            (order.total +5000).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')
+          }
+        </p>
 
 
         <div className='my-8 flex flex-col gap-3'>
