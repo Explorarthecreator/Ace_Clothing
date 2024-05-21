@@ -4,11 +4,14 @@ import { reset, signup } from '../features/auth/authSlice'
 import { FaEnvelope, FaKey, FaUser } from 'react-icons/fa6'
 import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { FaPhone } from 'react-icons/fa'
 
 function Signup() {
     const [formData, setFormData] = useState({
         email:'',
-        name:'',
+        firstName:'',
+        lastName:'',
+        phoneNumber:'',
         password:'',
         password2:''
     })
@@ -18,7 +21,7 @@ function Signup() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const {email, password, name , password2} = formData
+    const { firstName, lastName, phoneNumber, email, password, password2} = formData
 
     useEffect(()=>{
         if(isError){
@@ -61,9 +64,24 @@ function Signup() {
                 <div>
                     <label className="input input-bordered input-success flex items-center gap-3 bg-white text-black ">
                         <FaUser/>
-                        <input type="text" className="grow" placeholder="Enter your name" id='name' value={name} onChange={change} required />
+                        <input type="text" className="grow" placeholder="Enter your first name" id='firstName' value={firstName} onChange={change} required />
                     </label>
                 </div>
+
+                <div>
+                    <label className="input input-bordered input-success flex items-center gap-3 bg-white text-black ">
+                        <FaUser/>
+                        <input type="text" className="grow" placeholder="Enter your last name" id='lastName' value={lastName} onChange={change} required />
+                    </label>
+                </div>
+
+                <div>
+                    <label className="input input-bordered input-success flex items-center gap-3 bg-white text-black ">
+                        <FaPhone/>
+                        <input type='tel' className="grow" placeholder="Enter your last name" id='phoneNumber' value={phoneNumber} onChange={change} required />
+                    </label>
+                </div>
+
 
                 <div>
                     <label className="input input-bordered input-success flex items-center gap-3 bg-white text-black ">
@@ -90,7 +108,7 @@ function Signup() {
                     <span className="loading loading-spinner"></span>
                     loading
                   </button>:
-                    <button className={`btn w-full md:w-2/5 md:m-auto text-white bg-black ${(email === '' || password === '' || name === '' || password2 === '')&&'btn-disabled'}`}>
+                    <button className={`btn w-full md:w-2/5 md:m-auto text-white bg-black ${(email === '' || password === '' || firstName === ''||lastName===''||phoneNumber==='' || password2 === '')&&'btn-disabled'}`}>
                         Submit
                     </button>
                 }
