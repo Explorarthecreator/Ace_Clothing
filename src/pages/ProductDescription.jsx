@@ -28,13 +28,13 @@ function ProductDescription() {
         dispatch(addItem(cart))
     }
   return (
-    <div className=" w-11/12 m-auto text-black pb-10 ">
+    <div className=" w-11/12 md:w-4/5 m-auto text-black pb-10 ">
         <Link to={`/`} className="flex items-center gap-1 mb-5">
             <FaArrowLeft/> Back
         </Link>
 
         <div className=" md:flex">
-            <div className=" md:w-1/2">
+            <div className=" md:w-1/2 mt-8">
                 <img src={product.image} alt="" className=" w-full rounded-md" />
             </div>
 
@@ -77,22 +77,30 @@ function ProductDescription() {
                         Choose Size 
                     </h3>
                     <div className="flex gap-1 p-3">
-                        <div>
+                        {/* <div>
                             <input type="radio" id="S" name="size" value="S" className="hidden peer" required/>
                             <label htmlFor="S" className="inline-flex items-center w-8 h-8 justify-center text-black bg-white border border-gray-400 rounded-full cursor-pointer  peer-checked:bg-black peer-checked:text-white hover:text-gray-600 hover:bg-gray-100"  onClick={()=>dispatch(setSize('S'))}>                           
                                 <div className="block">
                                     <div className="w-full text-md font-semibold">S</div>
                                 </div>    
                             </label>
-                        </div>
-                        <div>
-                            <input type="radio" id="M" name="size" value="M" className="hidden peer" required />
-                            <label htmlFor="M" className="inline-flex items-center w-8 h-8 justify-center text-black bg-white border border-gray-400 rounded-full cursor-pointer  peer-checked:bg-black peer-checked:text-white hover:text-gray-600 hover:bg-gray-100" onClick={()=>dispatch(setSize('M'))}>                           
-                                <div className="block">
-                                    <div className="w-full text-md font-semibold">M</div>
-                                </div>    
-                            </label>
-                        </div>
+                        </div> */}
+                        {
+                            product.size?.map((singleSize,index)=>(
+                                <div key={index}>
+                                    <input type="radio" id={singleSize} name="size" value={singleSize} className="hidden peer" required/>
+                                    <label htmlFor={singleSize} className="inline-flex items-center w-8 h-8 justify-center text-black bg-white border border-gray-400 rounded-full cursor-pointer  peer-checked:bg-black peer-checked:text-white hover:text-gray-600 hover:bg-gray-100"  onClick={()=>dispatch(setSize(singleSize))}>                           
+                                        <div className="block">
+                                            <div className="w-full text-md font-semibold uppercase">
+                                                {
+                                                    singleSize
+                                                }
+                                            </div>
+                                        </div>    
+                                    </label>
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
 
