@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
-import { hide } from "../features/cart/cartSlice"
+import { hide} from "../features/cart/cartSlice"
 import Cart from "./Cart"
 import Order from "./Order"
 import { resetStep } from "../features/order/orderSlice"
-// import { increaseStep } from "../features/order/orderSlice"
-
 
 function FinishOrder() {
     const {cartView} = useSelector((state)=>state.cart)
@@ -33,12 +31,11 @@ function FinishOrder() {
             </ul>
         </div>
 
-        {/* <Cart/> */}{
+        {
             step === 1? <Cart/>:
             step === 2? <Order/>:
             step === 3 && <p>Here</p>
         }
-        {/* <Order/> */}
         
     </div>
   )
