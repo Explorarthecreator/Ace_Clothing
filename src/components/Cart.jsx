@@ -6,27 +6,27 @@ import { toast } from "react-toastify"
 import { increaseStep, setOrder } from "../features/order/orderSlice"
 import { FaArrowRight } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
+import EmptyCart from "./EmptyCart"
 
 
 function Cart() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const loggedIn = true
+    const {loggedIn} = useSelector((state)=> state.auth)
     const {cart} = useSelector((state)=>state.cart)
     const [total,setTotalPrice] = useState(()=>{
         let total = 0
-        cart.map((item)=>{
+        cart.map((item)=>(
             total = total+(Number(item.price)*Number(item.quantity))
-        })
+        ))
         return total
     })
 
     useEffect(()=>{
         let total = 0
-        cart.map((item)=>{
+        cart.map((item)=>(
             total = total+(Number(item.price)*Number(item.quantity))
-        })
-        console.log("I was triggered");
+        ))
         setTotalPrice(total)
     },[cart])
 
@@ -85,10 +85,10 @@ function Cart() {
                     <CartItem cart={cartItem} key={index} index={index} reduceQuantity={reduceQuantity} increaseQuantity={increaseQuantity}/>
                 ))} 
             </div>
-            :<p>Nothing in your cart</p>
+            :<EmptyCart/>
         }
 
-        <div className=" flex justify-between my-5">
+        <div className={`${cart.length <=0?'hidden':'flex justify-between my-5'}`}>
             <div>
                 <h1 className=" text-black text-xl font-medium">
                     Cart Total
@@ -103,7 +103,7 @@ function Cart() {
             </p>
         </div>
 
-        <button className="btn bg-black text-white w-full" onClick={proceedToCheckout}>
+        <button className={`btn bg-black text-white w-full ${cart.length<=0 && 'hidden'}`} onClick={proceedToCheckout}>
             Proceed to checkout <FaArrowRight/>
         </button>
 
