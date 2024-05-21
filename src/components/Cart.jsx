@@ -12,7 +12,7 @@ import EmptyCart from "./EmptyCart"
 function Cart() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {loggedIn} = useSelector((state)=> state.auth)
+    const {loggedIn,id} = useSelector((state)=> state.auth)
     const {cart} = useSelector((state)=>state.cart)
     const [total,setTotalPrice] = useState(()=>{
         let total = 0
@@ -61,7 +61,10 @@ function Cart() {
         if(loggedIn){
             const order ={
                 cart,
-                total
+                total,
+                address:'',
+                userRef:id,
+                status:'open'
             }
             dispatch(setOrder(order))
             dispatch(increaseStep())
@@ -73,7 +76,7 @@ function Cart() {
     }
 
   return (
-    <div className="w-11/12 m-auto mt-3">
+    <div className="w-11/12 md:w-4/5 m-auto mt-3">
         <h1 className=" text-black text-2xl font-medium my-4">
             Cart
         </h1>
