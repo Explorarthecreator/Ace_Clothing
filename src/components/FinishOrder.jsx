@@ -3,6 +3,7 @@ import { hide} from "../features/cart/cartSlice"
 import Cart from "./Cart"
 import Order from "./Order"
 import { resetStep } from "../features/order/orderSlice"
+import Payment from "./Payment"
 
 function FinishOrder() {
     const {cartView} = useSelector((state)=>state.cart)
@@ -34,7 +35,7 @@ function FinishOrder() {
         {
             step === 1? <Cart/>:
             step === 2? <Order/>:
-            step === 3 && <p>Here</p>
+            step === 3 && <Payment/>
         }
         
     </div>
