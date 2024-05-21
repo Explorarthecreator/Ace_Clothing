@@ -5,6 +5,7 @@ import { serverTimestamp } from "firebase/database";
 import { doc, setDoc } from "firebase/firestore";
  
 const auth = getAuth()
+
 const loggedIn = JSON.parse(localStorage.getItem('loggedIn'))
 const id = JSON.parse(localStorage.getItem('id'))
 const initialState={
@@ -17,27 +18,22 @@ const initialState={
 }
 
 export const signup = createAsyncThunk('auth/signup',async(formData,thunkAPI)=>{
-    const{email,password,name} = formData
+    const{firstName, lastName, email, password} = formData
     try {
-        // const auth = getAuth(app)
-
         const userCredential = await createUserWithEmailAndPassword(auth,email,password)
         updateProfile(auth.currentUser,{
-            displayName: name,
-            
+            displayName: firstName,
         })
         console.log(userCredential);
         const user = {
             id: userCredential.user.uid,
-            name: name,
+            name: firstName + ''+lastName,
             email:email
         }
-    
         const formDataCopy = {
             ...formData,
-            isAdmin: false
+            isAdmin: false,
         }
-
         delete formDataCopy.password
         delete formDataCopy.password2
 
@@ -52,7 +48,6 @@ export const signup = createAsyncThunk('auth/signup',async(formData,thunkAPI)=>{
         return user.id
 
     } catch (error) {
-        // const message = (error.response && error.response.data && error.response.data.message)||error.message|| error.toString()
         const message = "Details not correct!"
         
         return thunkAPI.rejectWithValue(message)
