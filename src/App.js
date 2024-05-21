@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import FinishOrder from "./components/FinishOrder";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import PrivateRoute from "./components/PrivateRoute";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage/>}/>
             <Route path="/description" element={<ProductDescription/>}/>
+            <Route path="/profile" element={<PrivateRoute/>}>
+              <Route path="/profile" element={<Profile/>}/>
+            </Route>
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Signup/>}/>
           </Routes>
