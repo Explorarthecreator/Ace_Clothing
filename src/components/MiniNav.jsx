@@ -15,10 +15,10 @@ function MiniNav({filterInput, value}) {
         <button className={`btn outline-none btn-outline border-black text-black hover:text-white hover:bg-black btn-sm carousel-item ${value === 't-shirt' &&'bg-black text-white hover:bg-transparent hover:text-black'}`} onClick={()=>filterInput('t-shirt')}>
             <FaShirt size={25}/> T-Shirt
         </button>
-        <button className={`btn outline-none btn-outline border-black text-black hover:text-white hover:bg-black btn-sm carousel-item ${value === 'trousers' &&'bg-black text-white hover:bg-transparent hover:text-black'}`} onClick={()=>filterInput('trousers')}>
+        <button className={`btn outline-none btn-outline border-black text-black hover:text-white hover:bg-black btn-sm carousel-item ${value === 'trouser' &&'bg-black text-white hover:bg-transparent hover:text-black'}`} onClick={()=>filterInput('trouser')}>
             <GiTrousers size={25}/> Trousers
         </button>
-        <button className={`btn outline-none btn-outline border-black text-black hover:text-white hover:bg-black btn-sm carousel-item ${value === 'heels' &&'bg-black text-white hover:bg-transparent hover:text-black'}`} onClick={()=>filterInput('heels')}>
+        <button className={`btn outline-none btn-outline border-black text-black hover:text-white hover:bg-black btn-sm carousel-item ${value === 'heel' &&'bg-black text-white hover:bg-transparent hover:text-black'}`} onClick={()=>filterInput('heel')}>
             <GiHighHeel size={25}/> Heels
         </button>
         <button className={`btn outline-none btn-outline border-black text-black hover:text-white hover:bg-black btn-sm carousel-item ${value === 'watch' &&'bg-black text-white hover:bg-transparent hover:text-black'}`} onClick={()=>filterInput('watch')}>
