@@ -32,7 +32,7 @@ function Homepage() {
   },[products, isError, message, dispatch])
 
   if(isLoading){
-    return <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-2 md:gap-1 justify-center">
+    return <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-11/12 md:w-4/5 m-auto gap-2 md:gap-1  justify-center">
             <div>
               <ProductItemLoader/>
             </div>
@@ -48,11 +48,8 @@ function Homepage() {
           </div>
   }
   return (
-    <div className=" w-11/12 md:w-4/5 m-auto">
-        <h1 className=' text-black'>
-            Let's work
-        </h1>
-
+    <div className=" w-11/12 md:w-4/5 m-auto pt-3">
+       
         <div className=" md:w-4/5 md:m-auto">
           <MiniNav filterInput={display} value={value}/>
         </div>
