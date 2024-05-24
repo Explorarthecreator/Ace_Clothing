@@ -15,13 +15,14 @@ export const CartSlice = createSlice({
     initialState,
     reducers:{
         reset:(state)=>initialState,
+        clearCart:(state)=>{
+            localStorage.removeItem('cart')
+            reset()
+        },
         addItem:(state,action)=>{
-            // console.log(action.payload);
             const newCart = action.payload
 
             if(newCart.size === ''){
-                // state.message = 'Please select a size'
-                // return false
                 toast.error('Please Select a size')
             }else{
                 state.message = null
@@ -35,32 +36,21 @@ export const CartSlice = createSlice({
                     let oldItems
                     if(state.cart.length <=0){
                         oldItems = [newCart]
-                        console.log("empty");
                     }
                     else{
                         oldItems = [...state.cart,newCart]
-                        console.log("not empty");
                     }
                     localStorage.setItem('cart', JSON.stringify(oldItems))
                     state.cart.push(newCart)
-                    console.log(oldItems);
                     toast.success('Cart added')
                 }
-                // localStorage.setItem('cart', JSON.stringify(action.payload))
-                // return true
             }
         },
         deleteItem:(state,action)=>{
             const localCart = JSON.parse(localStorage.getItem('cart'))
-            console.log(action.payload);
             if(action.payload > -1){
                 localCart.splice(action.payload,1)
-                // console.log(action.payload.index);
             }
-            // localCart[action.payload.index].quantity = action.payload.quantity -1
-            // console.log(localCart[action.payload.index].quantity);
-
-            // console.log(localCart);
             state.cart = localCart
             localStorage.setItem('cart',JSON.stringify(localCart))
         },
@@ -98,6 +88,6 @@ export const CartSlice = createSlice({
     },
 })
 
-export const {reset, addItem,show,hide,reduce,increase, deleteItem} = CartSlice.actions
+export const {reset, addItem,show,hide,reduce,increase, deleteItem, clearCart} = CartSlice.actions
 
 export default CartSlice.reducer
