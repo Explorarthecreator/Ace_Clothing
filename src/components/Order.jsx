@@ -1,21 +1,45 @@
 import OrderDetail from './OrderDetail'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
-import { increaseStep, resetStep } from '../features/order/orderSlice'
+import { increaseStep, resetStep,updateOrder } from '../features/order/orderSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { FaLocationPin } from 'react-icons/fa6'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 function Order() {
   const {order} = useSelector((state)=>state.order)
+  const [address, setAddress] = useState('')
   // const [formData, setFormData] = useState({
   //   address:''
   // })
   const dispatch = useDispatch()
+  const printer = ()=>{
+    if(address === ''){
+      toast.error('Please provide an address')
+      return
+    }
+
+    const orderUpdate = {
+      address,
+      total: order.total + 5000
+
+    }
+    dispatch(updateOrder(orderUpdate))
+    dispatch(increaseStep())
+  }
   return (
-    <div className='w-11/12 m-auto mt-3 text-black'>
+    <div className='w-11/12 md:w-4/5 m-auto mt-3 text-black'>
 
-        {/* <h1 className='text-black text-2xl font-medium my-4'>
-          Shipping Method
-        </h1> */}
+        <h1 className='text-black text-2xl font-medium my-4'>
+          Shipping Address
+        </h1>
 
+        <div>
+          <label className="input input-bordered border-black outline-none flex items-center gap-2 bg-white text-black">
+            <FaLocationPin/>
+            <input type="email" className="grow" placeholder="Enter your address (add state)" id='address' value={address} onChange={(e)=>setAddress(e.target.value)} />
+          </label>
+        </div>
 
         <h1 className='text-black text-2xl font-medium my-4'>
             Order Summary
@@ -64,7 +88,7 @@ function Order() {
 
 
         <div className='my-8 flex flex-col gap-3'>
-          <button className="btn bg-black text-white w-full" onClick={()=>dispatch(increaseStep())}>
+          <button className="btn bg-black text-white w-full" onClick={printer}>
               Proceed to payment <FaArrowRight/>
           </button>
 
