@@ -6,6 +6,7 @@ import { show } from "../features/cart/cartSlice"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { useEffect, useState } from "react"
 import { logout } from "../features/auth/authSlice"
+import { FaUserAlt } from "react-icons/fa"
 
 
 function NavBar() {
@@ -30,7 +31,7 @@ function NavBar() {
     },[auth])
     const {cart} = useSelector((state)=>state.cart)
   return (
-    <nav className='w-full bg-white shadow-xl text-black p-2 fixed top-0 left-0'>
+    <nav className='w-full bg-white shadow-xl text-black p-2 fixed top-0 left-0 font-encode'>
         <div className="navbar md:w-11/12 md:m-auto p-1">
             <div className="flex-1">
                 <Link className="text-xl font-encode font-semibold flex items-center gap-2" to={'/'}>
@@ -42,10 +43,13 @@ function NavBar() {
                     loggedIn? 
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} className='flex items-center btn btn-ghost' role="button">
-                            <div className="avatar">
-                                <div className="w-10 rounded-full">
-                                    <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                                </div>
+                            <div className="avatar bg-black text-white rounded-full p-2">
+                                <FaUserAlt/>
+
+                                {/* <div className="w-10 rounded-full flex items-center justify-center bg-black text-white"> */}
+                                    {/* <FaUserAlt/> */}
+                                    {/* <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" /> */}
+                                {/* </div> */}
                             </div>
                             <p className=' hidden md:block'>
                                 Hi {
