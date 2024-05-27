@@ -41,8 +41,16 @@ function Signup() {
     }
     const submit = (e)=>{
         e.preventDefault()
+        if(password !== password2){
+            toast.error('Both passwords should be the same')
+            return
+        }
+
         if(password2.length>=8 && password2===password){
             dispatch(signup(formData))
+        }else if(password2.length<8 || password.length <8){
+            toast.error('Password should be up to 8 characters')
+            return
         }else{
             toast.error('Not complete data')
             return
