@@ -56,7 +56,7 @@ function Homepage() {
 
         {
           (filteredItem === false && products.length >=1) ?
-          <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-2 md:gap-1 justify-center">
+          <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-2 md:gap-1 justify-center pb-8">
             {
               products.map((product)=>(
                 <ProductItem key={product.id} data={product.data}/>
