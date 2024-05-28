@@ -86,7 +86,7 @@ function Signup() {
                 <div>
                     <label className="input input-bordered input-success flex items-center gap-3 bg-white text-black ">
                         <FaPhone/>
-                        <input type='tel' className="grow" placeholder="Enter your last name" id='phoneNumber' value={phoneNumber} onChange={change} required />
+                        <input type='tel' className="grow" placeholder="Enter your phone number" id='phoneNumber' value={phoneNumber} onChange={change} required />
                     </label>
                 </div>
 
